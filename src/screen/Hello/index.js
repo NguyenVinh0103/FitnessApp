@@ -3,13 +3,11 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {colors, normalize} from '../../helper';
 import {IMG_BACKGROUND} from '../../assets';
 
 export const Hello = () => {
   const navigation = useNavigation();
-  const insets = useSafeAreaInsets();
 
   return (
     <View style={styles.container}>
@@ -29,7 +27,7 @@ export const Hello = () => {
           }
         </Text>
       </View>
-      <TouchableOpacity style={styles.btnStart}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.btnStart}>
         <Text style={styles.txtButton}>{'Get Start'}</Text>
       </TouchableOpacity>
       <View style = {styles.txtBottom}>
@@ -78,7 +76,7 @@ const styles = StyleSheet.create({
     marginTop: normalize(20),
   },
   btnStart: {
-    backgroundColor: '#E84479',
+    backgroundColor: colors.BUTTON,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -108,7 +106,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   txtSignIn:{
-    color: '#E84479',
+    color: colors.BUTTON,
     fontSize: normalize(16),
     letterSpacing: 1,
     lineHeight: normalize(22),
