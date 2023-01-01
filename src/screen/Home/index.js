@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  TouchableOpacityComponent,
   View,
 } from 'react-native';
 import React from 'react';
@@ -12,6 +11,7 @@ import {colors, normalize, normalizeHorizontal} from '../../helper';
 import FastImage from 'react-native-fast-image';
 import {IC_BACK, IC_AVATAR, IC_NOTIFICATION, IC_SEARCH} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
+import {Onboarding} from '../../component';
 
 export const Home = () => {
   const navigation = useNavigation();
@@ -59,6 +59,7 @@ export const Home = () => {
             />
           </TouchableOpacity>
         </View>
+        <Onboarding />
       </View>
     </SafeAreaView>
   );
