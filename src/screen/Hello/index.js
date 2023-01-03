@@ -27,16 +27,17 @@ export const Hello = () => {
           }
         </Text>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.btnStart}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Home')}
+        style={styles.btnStart}>
         <Text style={styles.txtButton}>{'Get Start'}</Text>
       </TouchableOpacity>
-      <View style = {styles.txtBottom}>
+      <View style={styles.txtBottom}>
         <Text style={styles.txtAccount}>
           {'Already have account ? '}
           <Text style={styles.txtSignIn}>{'Sign In'}</Text>
         </Text>
       </View>
-      
     </View>
   );
 };
@@ -92,24 +93,24 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     lineHeight: normalize(22),
   },
-  txtBottom:{
+  txtBottom: {
     position: 'absolute',
-    bottom : 0,
+    bottom: 0,
     alignSelf: 'center',
-    marginBottom: normalize(50)
+    marginBottom: normalize(50),
   },
-  txtAccount:{
+  txtAccount: {
     color: colors.TEXT,
     fontSize: normalize(16),
     letterSpacing: 1,
     lineHeight: normalize(22),
     fontWeight: '500',
   },
-  txtSignIn:{
+  txtSignIn: {
     color: colors.BUTTON,
     fontSize: normalize(16),
     letterSpacing: 1,
     lineHeight: normalize(22),
     fontWeight: '700',
-  }
+  },
 });

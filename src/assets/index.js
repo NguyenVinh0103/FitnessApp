@@ -1,6 +1,8 @@
 //-----------IMAGE---------///
 export const IMG_BACKGROUND = require('./images/background.png')
 export const IMG_SLIDE = require('./images/slide.png')
+export const IMG_ITEM1 = require('./images/item1.png')
+export const IMG_ITEM2 = require('./images/item2.png')
 
 
 

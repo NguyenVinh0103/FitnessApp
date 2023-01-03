@@ -1,4 +1,5 @@
 import {
+  FlatList,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -7,11 +8,53 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {colors, normalize, normalizeHorizontal} from '../../helper';
 import FastImage from 'react-native-fast-image';
-import {IC_BACK, IC_AVATAR, IC_NOTIFICATION, IC_SEARCH} from '../../assets';
 import {useNavigation} from '@react-navigation/native';
+
+import {colors, normalize, normalizeHorizontal} from '../../helper';
+import {
+  IC_BACK,
+  IC_AVATAR,
+  IC_NOTIFICATION,
+  IC_SEARCH,
+  IMG_ITEM1,
+  IMG_ITEM2,
+  IMG_SLIDE,
+} from '../../assets';
 import {Onboarding} from '../../component';
+
+const Product = [
+  {
+    id: 1,
+    image: IMG_ITEM1,
+    title: 'Fitness',
+    content: 'Personal Trainer',
+  },
+  {
+    id: 2,
+    image: IMG_SLIDE,
+    title: 'Nutrition',
+    content: 'Sport Nutrition',
+  },
+];
+
+const renderItem = ({item}) => {
+  return (
+    <View style={styles.item}>
+      <TouchableOpacity style={styles.img}>
+        <FastImage
+          source={item.image}
+          resizeMode="contain"
+          style={styles.imgItem}
+        />
+      </TouchableOpacity>
+      <View>
+        <Text style={styles.txtItemTitle}>{item.title}</Text>
+        <Text style={styles.txtItemContent}>{item.content}</Text>
+      </View>
+    </View>
+  );
+};
 
 export const Home = () => {
   const navigation = useNavigation();
@@ -51,15 +94,29 @@ export const Home = () => {
             placeholder="What do you learn today?"
             style={styles.tipSearch}
           />
-          <TouchableOpacity style = {styles.btnSearch}>
+          <TouchableOpacity style={styles.btnSearch}>
             <FastImage
-                source={IC_SEARCH}
-                resizeMode="contain"
-                style={styles.icSearch}
+              source={IC_SEARCH}
+              resizeMode="contain"
+              style={styles.icSearch}
             />
           </TouchableOpacity>
         </View>
         <Onboarding />
+        <View style={styles.title}>
+          <Text style={styles.txtTitle}>{'Trending courses'}</Text>
+          <Text style={styles.txtSeeAll}>{'See All'}</Text>
+        </View>
+        <View>
+          <FlatList
+            data={Product}
+            keyExtractor={(item) => `${item.id}`}
+            renderItem={renderItem}
+            contentContainerStyle={styles.flatList}
+            horizontal
+            showsHorizontalScrollIndicator = {false}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -108,13 +165,41 @@ const styles = StyleSheet.create({
     height: normalize(30),
     paddingLeft: normalizeHorizontal(50),
   },
-  btnSearch:{
+  btnSearch: {
     position: 'absolute',
-    marginLeft: normalizeHorizontal(12)
+    marginLeft: normalizeHorizontal(12),
   },
   icSearch: {
     height: normalize(30),
     aspectRatio: 1,
-    
+  },
+  title: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: normalizeHorizontal(20),
+  },
+  txtTitle: {
+    fontWeight: '700',
+    fontSize: normalize(16),
+    lineHeight: normalize(22),
+    letterSpacing: 0.2,
+  },
+  txtSeeAll: {
+    fontWeight: '700',
+    fontSize: normalize(16),
+    lineHeight: normalize(22),
+    letterSpacing: 0.2,
+    color: colors.BUTTON,
+  },
+  imgItem: {
+    width: 270,
+    height: 140,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
+  item: {
+    margin: normalize(10),
+    backgroundColor: '#fff',
+    borderRadius: 20
   },
 });
