@@ -20,10 +20,10 @@ export default OnboardingItem = ({item}) => {
         source={item.image}
         style={[styles.image, {width, resizeMode: 'contain'}]}
       />
-      <View style={styles.txt}>
-        <Text style={styles.txtTitle}>{item.title}</Text>
-        <TouchableOpacity style={styles.btnButton}>
-          <Text style={styles.txtTitle}>{item.button}</Text>
+      <View style = {styles.txt}>
+        <Text style = {styles.txtTitle}>{item.title}</Text>
+        <TouchableOpacity style = {styles.btnButton}>
+          <Text style = {styles.txtTitle} >{item.button}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -41,23 +41,23 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 20,
   },
-  txt: {
+  txt:{
     position: 'absolute',
     marginTop: normalize(150),
-    marginLeft: normalizeHorizontal(60),
+    marginLeft: normalizeHorizontal(60)
   },
-  btnButton: {
+  btnButton:{
     backgroundColor: colors.BUTTON,
     height: normalize(40),
     width: normalizeHorizontal(150),
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems:'center',
+    justifyContent:'center',
     borderRadius: 12,
-    marginTop: normalize(20),
+    marginTop: normalize(20)
   },
-  txtTitle: {
+  txtTitle:{
     fontSize: normalize(16),
     fontWeight: '700',
-    color: '#fff',
-  },
+    color: '#fff'
+  }
 });
