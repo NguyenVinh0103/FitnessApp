@@ -35,7 +35,7 @@ const Product = [
     content: 'Personal Trainer',
     ratingCount: 1,
     rating: 4.9,
-    icTimer: IC_TIME,
+    icon: IC_TIME,
     timer: '5h 30m',
   },
   {
@@ -283,6 +283,6 @@ const styles = StyleSheet.create({
   imgBottom: {
     height: normalize(80),
     aspectRatio: 4,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 });
