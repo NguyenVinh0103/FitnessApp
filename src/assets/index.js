@@ -4,6 +4,8 @@ export const IMG_SLIDE = require('./images/slide.png')
 export const IMG_ITEM1 = require('./images/item1.png')
 export const IMG_ITEM2 = require('./images/item2.png')
 export const IMG_BOTTOM = require('./images/imgBottom.png')
+export const IMG_LOGIN = require('./images/img_Login.png')
+
 
 
 
