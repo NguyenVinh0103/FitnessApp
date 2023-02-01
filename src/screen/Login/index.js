@@ -19,7 +19,7 @@ import {IMG_LOGIN, IC_SHOWPASS, IC_EMAIL, IC_FACEBOOK} from '../../assets';
 import {stringToHex} from 'react-native-mmkv-storage/dist/src/utils';
 
 export const Login = () => {
-  const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
   const [checked, setChecked] = useState(false);
   const [isShowPassWord, setIsShowPassWord] = useState(false);
 
@@ -32,7 +32,7 @@ export const Login = () => {
       <View style={styles.content}>
         <FastImage
           source={IMG_LOGIN}
-          resizeMode="cover"
+          resizeMode= 'cover'
           style={styles.imgLogin}
         />
         <Text style={styles.txtLogin}>{'Login'}</Text>
@@ -54,8 +54,9 @@ export const Login = () => {
               placeholder="Enter your password"
               placeholderTextColor="#707070"
               style={styles.tipPassword}
+              secureTextEntry = {isShowPassWord}
             />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={showPass} >
               <FastImage
                 source={IC_SHOWPASS}
                 resizeMode="contain"
@@ -81,7 +82,7 @@ export const Login = () => {
 
           <Text style={styles.txtForgot}>{'Forgot Password?'}</Text>
         </View>
-        <TouchableOpacity style={styles.btnLogin}>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')} style={styles.btnLogin}>
           <Text style={styles.login}>{'Login'}</Text>
         </TouchableOpacity>
         <TouchableOpacity style = {styles.txt}>
@@ -113,8 +114,9 @@ const styles = StyleSheet.create({
     flex: 0.4,
   },
   imgLogin: {
-    height: normalize(400),
+    width: normalize(390),
     aspectRatio: 1,
+    alignSelf: 'center'
   },
   txtLogin: {
     position: 'absolute',
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
     lineHeight: normalize(60),
     fontWeight: '700',
     marginLeft: normalizeHorizontal(40),
-    marginTop: normalize(112),
+    marginTop: normalize(180),
   },
   form: {
     flex: 0.6,
