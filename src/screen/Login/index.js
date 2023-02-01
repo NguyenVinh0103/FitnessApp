@@ -16,16 +16,37 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {colors, height, normalize, normalizeHorizontal} from '../../helper';
 import {IMG_LOGIN, IC_SHOWPASS, IC_EMAIL, IC_FACEBOOK} from '../../assets';
-import {stringToHex} from 'react-native-mmkv-storage/dist/src/utils';
+import {loginHook} from './hook';
+import { ActivityIndicator } from 'react-native-paper';
 
 export const Login = () => {
   const navigation = useNavigation();
   const [checked, setChecked] = useState(false);
   const [isShowPassWord, setIsShowPassWord] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('cityslicka');
 
   const showPass = () => {
     setIsShowPassWord(!isShowPassWord);
   };
+
+  const onLogin = async () => {
+    
+		setIsLoading(true);
+		const params = {
+			username: email,
+			password: password,
+		}
+		const response = await getUserAction.onGetUser(params, dispatch)
+    console.log(response, 'response saga') //abc
+		const { statusCode, data } = response
+		if (data != "") {
+			navigation.navigate('Register')
+      console.log('login success')
+		}
+		setIsLoading(false);
+	}
 
   return (
     <View style={styles.container}>
@@ -41,6 +62,8 @@ export const Login = () => {
         <View style={styles.txtFormEmail}>
           <Text style={styles.txtEmail}>{'Email'}</Text>
           <TextInput
+            value={email}
+            onChangeText={setEmail}
             placeholder="Enter your email"
             placeholderTextColor="#707070"
             style={styles.tipEmail}
@@ -51,6 +74,8 @@ export const Login = () => {
           <Text style={styles.txtPassword}>{'Password'}</Text>
           <View style={styles.flex}>
             <TextInput
+              value={password}
+              onChangeText={setPassword}
               placeholder="Enter your password"
               placeholderTextColor="#707070"
               style={styles.tipPassword}
@@ -82,8 +107,8 @@ export const Login = () => {
 
           <Text style={styles.txtForgot}>{'Forgot Password?'}</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('Register')} style={styles.btnLogin}>
-          <Text style={styles.login}>{'Login'}</Text>
+        <TouchableOpacity onPress={onLogin} style={styles.btnLogin}>
+          {isLoading ? <ActivityIndicator /> : <Text style={styles.login}>{'Login'}</Text>}
         </TouchableOpacity>
         <TouchableOpacity style = {styles.txt}>
           <Text style={styles.txtAccount}>
@@ -99,7 +124,6 @@ export const Login = () => {
           <TouchableOpacity style = {styles.btnFaceBook}>
             <FastImage source={IC_FACEBOOK} resizeMode = 'contain' style = {styles.icFaceBook} />
           </TouchableOpacity>
-
         </View>
       </View>
     </View>

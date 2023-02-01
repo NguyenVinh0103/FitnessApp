@@ -40,7 +40,7 @@ export const Register = () => {
           <View style={styles.txtFormEmail}>
             <Text style={styles.txtEmail}>{'Email'}</Text>
             <TextInput
-              placeholder="Enter your email"
+              placeholder="Your email, e.g : vinh@gmail.com"
               placeholderTextColor="#707070"
               style={styles.tipEmail}
             />
@@ -49,8 +49,9 @@ export const Register = () => {
           <View style={styles.txtFormPhone}>
             <Text style={styles.txtPhone}>{'Phone'}</Text>
             <TextInput
-              placeholder="Enter your Phone"
+              placeholder="Your phone number, e.g : +01 112 xxx xxx"
               placeholderTextColor="#707070"
+              keyboardType='numeric'
               style={styles.tipPhone}
             />
             <View style={styles.borderPhone}></View>
