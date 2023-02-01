@@ -38,13 +38,10 @@ export const Login = () => {
 			username: email,
 			password: password,
 		}
-		const response = await getUserAction.onGetUser(params, dispatch)
-    console.log(response, 'response saga') //abc
-		const { statusCode, data } = response
-		if (data != "") {
-			navigation.navigate('Register')
-      console.log('login success')
-		}
+		// const response = await getUserAction.onGetUser(params, dispatch)
+    // console.log(response, 'response saga') //abc
+		// const { statusCode, data } = response
+		// if (data != "") {		// }
 		setIsLoading(false);
 	}
 
