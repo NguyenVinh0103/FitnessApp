@@ -11,6 +11,6 @@ export interface RegisterInterface {
 }
 
 export interface LoginInterface {
-    username: string,
+    email: string,
     password: string,
 }

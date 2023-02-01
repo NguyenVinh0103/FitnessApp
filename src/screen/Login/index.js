@@ -14,13 +14,16 @@ import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
+import {useDispatch} from 'react-redux';
+
 import {colors, height, normalize, normalizeHorizontal} from '../../helper';
 import {IMG_LOGIN, IC_SHOWPASS, IC_EMAIL, IC_FACEBOOK} from '../../assets';
-import {loginHook} from './hook';
 import { ActivityIndicator } from 'react-native-paper';
+import { authAction } from '../../redux/action';
 
 export const Login = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
   const [isShowPassWord, setIsShowPassWord] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,17 +34,35 @@ export const Login = () => {
     setIsShowPassWord(!isShowPassWord);
   };
 
-  const onLogin = async () => {
+  // const onLogin = async () => {
     
+	// 	setIsLoading(true);
+	// 	const params = {
+	// 		username: email,
+	// 		password: password,
+	// 	}
+	// 	const response = await getUserAction.onGetUser(params, dispatch)
+  //   // console.log(response, 'response saga') //abc
+	// 	const { statusCode, data } = response
+	// 	if (data != "") {
+	// 		navigation.navigate('Register')
+  //     console.log('login success')
+	// 	}
+	// 	setIsLoading(false);
+	// }
+
+  const onLogin = async () => {
 		setIsLoading(true);
 		const params = {
-			username: email,
+			email: email,
 			password: password,
 		}
-		// const response = await getUserAction.onGetUser(params, dispatch)
-    // console.log(response, 'response saga') //abc
-		// const { statusCode, data } = response
-		// if (data != "") {		// }
+		const response = await authAction.onLogin(params, dispatch)
+		const { statusCode, data } = response
+		if (data != "") {
+			navigation.navigate('Register')
+      console.log('login success')
+		}
 		setIsLoading(false);
 	}
 

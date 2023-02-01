@@ -1,3 +1,5 @@
+
+
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
@@ -7,13 +9,13 @@ import {useNavigation} from '@react-navigation/native';
 export const useLogin = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('vinh@gmail.com');
+  const [email, setEmail] = useState('eve.holt@reqres.in');
   const [password, setPassword] = useState('string');
   const [isLoading, setIsLoading] = useState(false);
   
 
   const login = async () => {
-    if (username !== '' && password !== '') {
+    if (email !== '' && password !== '') {
       const params = {
         email: username.toLowerCase(),
         password: password.trim(),
